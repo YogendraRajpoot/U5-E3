@@ -1,8 +1,10 @@
 import React, { useContext, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../context/AuthContext";
 import { Container, StyledForm } from "./styled";
 
 export const Login = () => {
+  const navigate=useNavigate()
   const { login } = useContext(AuthContext);
   const [form, setForm] = useState({
     email: "",
@@ -15,16 +17,18 @@ export const Login = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    navigate("/productpage")
     console.log(form);
-    fetch(`https://masai-api-mocker.herokuapp.com//auth/register`, {
+    fetch(`http://localhost:3001/login`, {
       method: "post",
       body: JSON.stringify(form),
       headers: { "Content-Type": "application/json" },
     })
       .then((res) => res.json())
-      .then((res) => login(res.token))
+      .then((res) => login("123"))
       .catch((err) => console.log(err));
   };
+  
 
   const { email, password } = form;
 

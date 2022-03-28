@@ -9,6 +9,7 @@ export const Navbar = () => {
         <StyledLink to="/">Home</StyledLink>
         <StyledLink to="/login">Login</StyledLink>
         <StyledLink to="/register">Register</StyledLink>
+        <StyledLink to="/productpage">Product</StyledLink>
       </div>
     </Section1>
   );

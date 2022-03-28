@@ -22,7 +22,7 @@ export const Register = () => {
   const hadleSubmit = (e) => {
     e.preventDefault();
     console.log(form);
-    fetch(`https://masai-api-mocker.herokuapp.com//auth/register`, {
+    fetch(`http://localhost:3001/register`, {
       method: "post",
       body: JSON.stringify(form),
       headers: { "Content-Type": "application/json" },
