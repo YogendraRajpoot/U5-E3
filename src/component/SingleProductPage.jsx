@@ -8,6 +8,14 @@ width:500px;
 border:2px solid black;
 border-radius:2%;
 `;
+const Wrapper = style.div`
+height:1000px;
+width:800px;
+border:2px solid black;
+border-radius:2%;
+margin-left: auto;
+margin-right: auto;
+`;
 
 export const SingleProductPage = () => {
   const [user, setUser] = useState([]);
@@ -20,7 +28,7 @@ export const SingleProductPage = () => {
   }, []);
 
   return (
-    <>
+    <Wrapper>
       Title:- <div>{user.title}</div>
       <br />
       <Image src={user.images} alt=""></Image>
@@ -36,6 +44,6 @@ export const SingleProductPage = () => {
       Rating :-<div>{user.rating}</div>
       <br />
       Brand:- <div>{user.brand}</div>
-    </>
+    </Wrapper>
   );
 };

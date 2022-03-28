@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useState } from "react";
 import { Navigate } from "react-router-dom";
 import { AuthContext } from "../context/AuthContext";
-import { Container, StyledLink } from "./styled";
+import { Container, Logout, StyledLink, StyleTable } from "./styled";
 
 export const ProductPage = () => {
   const [data, setData] = useState([]);
@@ -12,7 +12,7 @@ export const ProductPage = () => {
       .catch((err) => console.log(err));
   }, []);
 
-    const { isAuth } = useContext(AuthContext);
+    const { isAuth,logout } = useContext(AuthContext);
 
   if (!isAuth) {
     return <Navigate to="/login" />;
@@ -20,7 +20,8 @@ export const ProductPage = () => {
   return (
     <Container>
       <h1>Product</h1>
-      <table>
+      <Logout onClick={logout}>Logout</Logout>
+      <StyleTable>
         <thead>
           <tr>
             <th>Product Name</th>
@@ -31,17 +32,17 @@ export const ProductPage = () => {
         <tbody>
           {data.map((user) => (
             <tr key={user.id}>
-              <th>{user.title}</th>
-              <th>{user.price}</th>
-              <th>
+              <td>{user.title}</td>
+              <td>{user.price}</td>
+              <td>
                 <StyledLink to={`/products/${user.id}`}>
                   more details...
                 </StyledLink>
-              </th>
+              </td>
             </tr>
           ))}
         </tbody>
-      </table>
+      </StyleTable>
     </Container>
   );
 };

@@ -1,13 +1,11 @@
 import React, { useContext, useState } from "react";
-import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../context/AuthContext";
 import { Container, StyledForm } from "./styled";
 
 export const Login = () => {
-  const navigate=useNavigate()
   const { login } = useContext(AuthContext);
   const [form, setForm] = useState({
-    email: "",
+    username: "",
     password: "",
   });
   const handleChange = (e) => {
@@ -17,32 +15,31 @@ export const Login = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    navigate("/productpage")
     console.log(form);
-    fetch(`http://localhost:3001/login`, {
+    fetch(`https://masai-api-mocker.herokuapp.com/auth/login`, {
       method: "post",
       body: JSON.stringify(form),
       headers: { "Content-Type": "application/json" },
     })
       .then((res) => res.json())
-      .then((res) => login("123"))
+      .then((res) => login(res.token))
       .catch((err) => console.log(err));
   };
   
 
-  const { email, password } = form;
+  const { username, password } = form;
 
   return (
     <Container>
       <h1>Login</h1>
       <StyledForm onSubmit={handleSubmit}>
         <label>
-          Email :-
+          Username :-
           <input
             type="text"
             placeholder="Enter Your Email"
-            name="email"
-            value={email}
+            name="username"
+            value={username}
             onChange={handleChange}
           />
         </label>
